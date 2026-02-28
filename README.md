@@ -1,4 +1,14 @@
-# Getting Started with Create React App
+# How to make a game with this
+
+All the data for the game itself lives in gamedata.js, where it's an object called `const gameData = { }`
+
+Immediately below this is a metadata object
+
+`    "metadata": {
+        "title": "Poop Adventure: The Shopping Center of Destiny",
+        "inventory": true,
+        "images": true
+    },`
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
