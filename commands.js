@@ -7,6 +7,7 @@ const ifCondition = (cond) => {
         if (condArray[1][0]=== "=") { return currentVars[thingNo] === compareNo }
         if (condArray[1] === "<") { return currentVars[thingNo] < compareNo }
     }
+
     if (cond[0].toUpperCase() === "I") { 
         if (cond.split(" ")[1] === "Owned") { return currentInventory.indexOf(thingNo) != -1 }
         else if (cond.split(" ")[1] === "Unowned") { return currentInventory.indexOf(thingNo) == -1 }
