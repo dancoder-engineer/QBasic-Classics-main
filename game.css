@@ -1,0 +1,58 @@
+body {
+  margin: 0;
+  height: 100vh;        
+  display: flex;
+  align-items: center;   
+  background-color: black;
+}
+
+#main{
+    display: grid;
+    grid-template-rows: 15px 1fr 15px 1fr 15px;
+    grid-template-columns: 15px 3fr 15px 1fr 15px;
+    width: 50vw;
+    height: 90vh;
+    background-color: grey;
+    margin: auto;
+}
+
+#textLabel{ 
+    grid-row: 4;
+    grid-column: 2;
+    background-color: blue;
+    color: white;
+    padding: 25px;
+    font-family: 'Perfect DOS VGA 437', monospace;
+    font-size:x-large;
+}
+
+#options{ 
+    grid-row: 2 / span 3;
+    grid-column: 4;
+    background-color: blue;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#imagediv{
+    grid-row: 2;
+    grid-column: 2;
+    background-image: url("./images/0.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+
+button{
+    width: 90%;
+    height: 15%;
+    margin: auto
+}
+
+#inventoryLabel{
+    color: white;
+}
