@@ -16,7 +16,7 @@ const ifCondition = (cond) => {
 
 
 
-const runCommands = (commands) => { 
+const runCommands = (commands, currentLabel) => { 
     if (commands[0] === "Give Item") { 
         currentInventory.push(commands[1]) 
     }
@@ -27,6 +27,8 @@ const runCommands = (commands) => {
     }
     
     if (commands[0] === "Checkpoint") { 
+        checkpointLabel = currentLabel
+        console.log(currentLabel)
         checkpointInventory = [...currentInventory] 
         checkpointVars = [...currentVars] 
         showInventory()
@@ -34,6 +36,8 @@ const runCommands = (commands) => {
     
     if (commands[0] === "Game Over") { 
         hideInventory()
+        currentButtons = ["Return to Checkpoint"]
+        currentLabels = [checkpointLabel]
         currentInventory = [...checkpointInventory] 
         currentVars = [...checkpointVars] 
     }
@@ -54,7 +58,6 @@ const runCommands = (commands) => {
         music.pause()
     }
 
-    ["Add Label If", "V2 > 0", "Cheat", "500"]
    if (commands[0] === "Add Label If") {  
         if(ifCondition(commands[1])) { 
             currentButtons.push(commands[2])

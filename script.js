@@ -44,13 +44,13 @@ const inventoryText = () => {
 const newLabel = (label) => {
     currentData = getData(label)
     gameText.innerText = currentData.text
-    currentButtons = [...currentData.options]
-    currentLabels = [...currentData.labels]
+    if (currentData.options) { currentButtons = [...currentData.options] }
+    if (currentData.labels) { currentLabels = [...currentData.labels] }
     picdiv.style.backgroundImage = "url('./images/"+ label + ".png')";
     if (currentData.commands) {  
         if (typeof(currentData.commands[0]) === "object") {  
             for (let command of currentData.commands) {
-                runCommands(command)
+                runCommands(command, label)
             }
         }
         else {
@@ -86,6 +86,7 @@ let checkpointInventory = []
 let currentVars = []
 let checkpointVars = []
 let currentMusic = ""
+let checkpointLabel = ""
 
 init()
 
