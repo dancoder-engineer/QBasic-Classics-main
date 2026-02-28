@@ -1,4 +1,4 @@
-const getData = (label) => gameData["gameData"][label]
+const getData = (label) => gameData["mainData"][label]
 
 function changeButtons(buttonLabels, currentLabels) {
     for(let button of buttons){
@@ -67,7 +67,7 @@ const newLabel = (label) => {
 
 const init = () => {
     document.title = gameData.metadata.title
-    fullInventory = gameData.gameData.inventory
+    fullInventory = gameData.mainData.inventory
     newLabel("0")
 }
 

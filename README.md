@@ -2,13 +2,52 @@
 
 All the data for the game itself lives in gamedata.js, where it's an object called `const gameData = { }`
 
+
+##Metadata
+
 Immediately below this is a metadata object
 
-`    "metadata": {
-        "title": "Poop Adventure: The Shopping Center of Destiny",
-        "inventory": true,
-        "images": true
-    },`
+```
+    "metadata": {
+        "title": "Game Title",
+        "inventory": true
+    },
+```
+
+Tht title is the title of your game, while the inventory tells the game whether or not you want to show the player their inventory. Technically it'll be there under the hood regardless, but if your game doesn't use an inventory, why bother taking up space with it?
+
+
+###Main Data
+
+Under the metadata object goes the main data object
+
+```
+
+"mainData": {
+
+            "inventory": ["pencil", "phone", "book", "tv"],
+
+            ...labels
+        },
+
+```
+
+The inventory is an array of the names of strings representing the inventory items the player can have.
+
+##Labels
+
+Because this system is emulating QBasic text adventures where the entire gameplay is choosing an option and going to a different choice based on what the player chose,
+this engine runs on labels, just like you would GOTO in QBasic. These live in the mainData, right under the inventory, an example is as follows.
+
+```
+"0": {
+            "text": "Game Title",
+            "options": ["Start"],
+            "labels": ["50"],
+            "commands": ["Stop Audio"]
+    }
+```
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
