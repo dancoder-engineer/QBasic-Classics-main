@@ -51,7 +51,6 @@ body {
 #imagediv{
     grid-row: 4;
     grid-column: 2;
-    background-image: url("./images/0.png");
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
