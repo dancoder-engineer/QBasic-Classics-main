@@ -2,15 +2,15 @@ const ifCondition = (cond) => {
     let condArray = cond.split(" ")
     let thingNo = parseInt(condArray[0].slice(1))
     if (cond[0].toUpperCase() === "V") {
-        compareNo = parseInt(condArray[2])
+        let compareNo = parseInt(condArray[2])
         if (condArray[1] === ">") { return currentState.vars[thingNo] > compareNo }
         else if (condArray[1][0]=== "=") { return currentState.vars[thingNo] === compareNo }
         else if (condArray[1] === "<") { return currentState.vars[thingNo] < compareNo }
     }
 
     if (cond[0].toUpperCase() === "I") { 
-        if (cond.split(" ")[1] === "Owned") { return currentState.inventory.indexOf(thingNo) != -1 }
-        else if (cond.split(" ")[1] === "Unowned") { return currentState.inventory.indexOf(thingNo) == -1 }
+        if (condArray[1] === "Owned") { return currentState.inventory.indexOf(thingNo) != -1 }
+        else if (condArray[1] === "Unowned") { return currentState.inventory.indexOf(thingNo) == -1 }
     }
 }
 
@@ -22,9 +22,7 @@ const junction = (currentData) => {
 
 const commandHandler = {
     "Give Item": (commands) => { 
-        if (commands[0] === "Give Item") { 
             currentState.inventory.push(commands[1]) 
-        }
     },
 
     "Remove Item": (commands) => { 
@@ -33,7 +31,7 @@ const commandHandler = {
     },
 
     "Checkpoint": () => { 
-        checkpointState = {...currentState}
+        checkpointState = structuredClone(currentState)
     },
 
     "Game Over": () => { 
@@ -75,9 +73,13 @@ const commandHandler = {
 }
 
 
-const runCommands = (commands) => { 
+const runCommands = (commands) => {
 
     const handler = commandHandler[commands[0]]
     if (handler) { handler(commands) }
-
+    else {
+        console.warn("Unknown command:", commands[0])
+    }
 }
+
+

@@ -18,7 +18,7 @@ function changeButtons(buttonLabels, currentLabels) {
 }
 
 
-const showMenu = () => {  console.log("jh")
+const showMenu = () => { 
         const mainMenu = {
             "text": inventoryText(),
             "options": ["Save", "Load", "Back"],
@@ -37,8 +37,10 @@ const saveGame = () => {
 
 const loadGame = () => {
     const save = JSON.parse(localStorage.getItem("saveData"))
-    runCommands(["Play Music", save.music])
-    newLabel(save.label)
+    currentState = structuredClone(save)
+    music.src = "./sound/" + save.music
+    music.play()
+    newLabel(currentState.label)
 }
 
 const inventoryText = () => {
@@ -88,8 +90,7 @@ const newLabel = (label) => {
 
     prepareTextAndOptions(currentData)
 
-    if (currentData.labels) { currentLabels = [...currentData.labels] }
-    if (currentData.image) { picdiv.style.backgroundImage = "url('./images/"+ currentData.image}
+    if (currentData.image) { picdiv.style.backgroundImage = "url('./images/"+ currentData.image + "')"}
     else { picdiv.style.backgroundImage = "url('./images/"+ label + ".png')" }
     if (currentData.commands) {  
         if (typeof(currentData.commands[0]) === "object") {  
