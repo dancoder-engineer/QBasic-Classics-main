@@ -111,13 +111,5 @@ Junction can be an array, as above or an array of arrays, like so:
 //     ["V2 > 20", "150"],
 //     ["V2 > 10", "200", "400"]
 // ]
-
 ```
-
-
-Do:
-O   Junction
-O   2 sounds?
-O   menu inventory/save/load
-O   can put "image" on a label for a specific image
 
