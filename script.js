@@ -43,6 +43,8 @@ const loadGame = () => {
 
 const inventoryText = () => {
 
+    if(!gameData.metadata.inventory) { return "" }
+
     if (currentState.inventory.length < 1) { return "Inventory Empty"}
     let ret = "Inventory: "
     for(let i = 0; i < currentState.inventory.length; i++){
