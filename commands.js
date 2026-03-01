@@ -15,8 +15,27 @@ const ifCondition = (cond) => {
 }
 
 const junction = (currentData) => { 
-    if(ifCondition(currentData[0])) { newLabel(currentData[1]) }
-    else { newLabel(currentData[2]) }
+
+    juncs = []
+
+    if (!Array.isArray(currentData[0])){ 
+        juncs[0] = currentData
+    }
+    else {
+        juncs = structuredClone(currentData)
+    }
+
+
+    for (let junc of juncs) { console.log(juncs)
+        if(ifCondition(junc[0])) { 
+            newLabel(junc[1])
+            return 0
+        }
+        if (junc[2]) { 
+            newLabel(junc[2]) 
+            return 0
+        }
+    }
  }
 
 

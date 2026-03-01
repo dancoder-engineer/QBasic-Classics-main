@@ -94,9 +94,9 @@ const newLabel = (label) => {
         if (currentData.image) { picdiv.style.backgroundImage = "url('./images/"+ currentData.image + "')"}
         else { picdiv.style.backgroundImage = "url('./images/"+ label + ".png')" }
      }
-     
+
     if (currentData.commands) {  
-        if (typeof(currentData.commands[0]) === "object") {  
+        if (Array.isArray(currentData.commands[0])) {  
             for (let command of currentData.commands) {
                 runCommands(command, label)
             }
