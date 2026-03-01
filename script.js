@@ -44,7 +44,11 @@ const inventoryText = () => {
 const newLabel = (label) => {
     currentData = getData(label)
     gameText.innerText = currentData.text
-    if (currentData.options) { currentButtons = [...currentData.options] }
+    if (!currentData.options) { 
+        currentButtons = []
+        currentLabels = []
+    }
+    else { currentButtons = [...currentData.options] }
     if (currentData.labels) { currentLabels = [...currentData.labels] }
     picdiv.style.backgroundImage = "url('./images/"+ label + ".png')";
     if (currentData.commands) {  
