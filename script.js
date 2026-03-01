@@ -22,7 +22,7 @@ const showMenu = () => {  console.log("jh")
         const mainMenu = {
             "text": inventoryText(),
             "options": ["Save", "Load", "Back"],
-            "labels": ["Save", "Load", currentLabel]
+            "labels": ["Save", "Load", currentState.label],
         }
 
         prepareTextAndOptions(mainMenu)
@@ -31,23 +31,23 @@ const showMenu = () => {  console.log("jh")
 
 
 const saveGame = () => {
-
-
-
-    localStorage.setItem("saveData", JSON.stringify(gameState));
+    localStorage.setItem("saveData", JSON.stringify(currentState))
+    newLabel(currentState.label)
 }
 
 const loadGame = () => {
-    
+    const save = JSON.parse(localStorage.getItem("saveData"))
+    runCommands(["Play Music", save.music])
+    newLabel(save.label)
 }
 
 const inventoryText = () => {
 
-    if (currentInventory.length < 1) { return "Inventory Empty"}
+    if (currentState.inventory.length < 1) { return "Inventory Empty"}
     let ret = "Inventory: "
-    for(let i = 0; i < currentInventory.length; i++){
-        ret += fullInventory[currentInventory[i]] + " "
-        if (i < currentInventory.length - 1 ) ret += " || "
+    for(let i = 0; i < currentState.inventory.length; i++){
+        ret += fullInventory[currentState.inventory[i]] + " "
+        if (i < currentState.inventory.length - 1 ) ret += " || "
     }
     return ret
 }
@@ -61,9 +61,20 @@ const prepareTextAndOptions = (data) => {
 }
 
 const newLabel = (label) => {
+
+    if (label === "Save") {
+        saveGame()
+        return 0
+    }
+
+    if (label === "Load") {
+        loadGame()
+        return 0
+    }
+
     sfx.pause()
     let currentData = { ...getData(label) }
-    currentLabel = label
+    currentState.label = label
 
     prepareTextAndOptions(currentData)
 
@@ -109,28 +120,22 @@ const picdiv = document.querySelector("#imagediv")
 const music = document.querySelector("#music")
 const sfx = document.querySelector("#audio")
 let fullInventory
-let currentInventory = []
-let checkpointInventory = []
-let currentVars = []
-let checkpointVars = []
 let currentButtons = []
 let currentLabels = []
-let currentMusic = ""
-let checkpointLabel = ""
-let currentLabel = ""
+
 
 let currentState = {
-    "label": "", //currentLabel,
-    "inventory": [], //[...currentInventory],
-    "vars": [], //[...currentVars],
-    "music": "" //currentMusic
+    "label": "",
+    "inventory": [],
+    "vars": [],
+    "music": ""
 }
 
 let checkpointState = {
-    "label": "", //checkpointLabel,
-    "inventory": [], //[...checkpointInventory],
-    "vars": [], //[...checkpointLabel],
-    "music": "" //checkpointMusic
+    "label": "",
+    "inventory": [],
+    "vars": [],
+    "music": ""
 }
 
 
