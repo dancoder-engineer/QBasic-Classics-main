@@ -90,8 +90,23 @@ Available commands are:
 
 
 
+##Junction
+
+`
+    "25": {
+        "Junction": ["V2 > 10", "50", "150"]
+    },
+`
+
+Sometimes in QBasic, you want to send the player somewhere based on a condition when they make a choice, for this interpreter, that's a junction label.
+Junction labels only have one item in them, "Junction," which works the same as a ternary operator in a modern programming language. First is the condition.
+If it's fulfilled, the player goes to the first label, if not it goes to the second one.
+If there's a junction in a label, everything else gets ignored.
+
+
 Do:
-    Junction
+O   Junction
 O   2 sounds?
 O   menu inventory/save/load
 O   can put "image" on a label for a specific image
+

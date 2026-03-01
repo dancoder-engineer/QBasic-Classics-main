@@ -1,5 +1,5 @@
 const ifCondition = (cond) => { 
-    condArray = cond.split(" ")
+    let condArray = cond.split(" ")
     let thingNo = parseInt(condArray[0].slice(1))
     if (cond[0].toUpperCase() === "V") {
         compareNo = parseInt(condArray[2])
@@ -13,6 +13,11 @@ const ifCondition = (cond) => {
         else if (cond.split(" ")[1] === "Unowned") { return currentState.inventory.indexOf(thingNo) == -1 }
     }
 }
+
+const junction = (currentData) => { 
+    if(ifCondition(currentData[0])) { newLabel(currentData[1]) }
+    else { newLabel(currentData[2]) }
+ }
 
 
 const commandHandler = {

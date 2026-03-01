@@ -62,6 +62,8 @@ const prepareTextAndOptions = (data) => {
 
 const newLabel = (label) => {
 
+    sfx.pause()
+
     if (label === "Save") {
         saveGame()
         return 0
@@ -72,8 +74,14 @@ const newLabel = (label) => {
         return 0
     }
 
-    sfx.pause()
+
     let currentData = { ...getData(label) }
+
+    if (currentData.Junction) { 
+        junction(currentData.Junction)
+        return 0
+     }
+
     currentState.label = label
 
     prepareTextAndOptions(currentData)
