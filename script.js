@@ -19,7 +19,12 @@ function changeButtons(buttonLabels, currentLabels) {
 
 
 const showMenu = () => { 
-        const mainMenu = {
+
+        if (currentLabels[0] === "Save") { 
+            newLabel(currentState.label)
+            return 0
+        }
+            const mainMenu = {
             "text": inventoryText(),
             "options": ["Save", "Load", "Back"],
             "labels": ["Save", "Load", currentState.label],
