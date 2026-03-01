@@ -88,7 +88,7 @@ Available commands are:
 
 
 Do:
-Junction
-2 sounds?
-menu inventory/save/load
-can put "image" on a label for a specific image
+    Junction
+    2 sounds?
+    menu inventory/save/load
+    can put "image" on a label for a specific image

@@ -18,19 +18,30 @@ function changeButtons(buttonLabels, currentLabels) {
 }
 
 
-const hideInventory = () => { inventoryButton.style.display = "none"}
+const showMenu = () => {  console.log("jh")
+        const mainMenu = {
+            "text": inventoryText(),
+            "options": ["Save", "Load", "Back"],
+            "labels": ["Save", "Load", currentLabel]
+        }
 
-const showInventory = () => { 
-    if(gameData.metadata.inventory) { inventoryButton.style.display = "block" }
-    inventoryButton.innerHTML = inventoryText()
+        prepareTextAndOptions(mainMenu)
+        changeButtons(currentButtons, currentLabels)
+}
+
+
+const saveGame = () => {
+
+
+
+    localStorage.setItem("saveData", JSON.stringify(gameState));
+}
+
+const loadGame = () => {
+    
 }
 
 const inventoryText = () => {
-
-    if(!gameData.metadata.inventory) { 
-        hideInventory()
-        return "" 
-    }
 
     if (currentInventory.length < 1) { return "Inventory Empty"}
     let ret = "Inventory: "
@@ -41,14 +52,21 @@ const inventoryText = () => {
     return ret
 }
 
-const newLabel = (label) => {
-    currentData = getData(label)
-    gameText.innerText = currentData.text
-    if (!currentData.options) { 
-        currentButtons = []
-        currentLabels = []
+const prepareTextAndOptions = (data) => {
+    gameText.innerText = data.text
+    if (data.options) { 
+        currentButtons = [...data.options]
     }
-    else { currentButtons = [...currentData.options] }
+    if (data.labels) { currentLabels = [...data.labels] }
+}
+
+const newLabel = (label) => {
+    sfx.pause()
+    let currentData = { ...getData(label) }
+    currentLabel = label
+
+    prepareTextAndOptions(currentData)
+
     if (currentData.labels) { currentLabels = [...currentData.labels] }
     picdiv.style.backgroundImage = "url('./images/"+ label + ".png')";
     if (currentData.commands) {  
@@ -62,7 +80,7 @@ const newLabel = (label) => {
         }
     }
     changeButtons(currentButtons, currentLabels)
-    if (label !== "0" && gameData.metadata.inventory) { showInventory() }
+    
 
 
 
@@ -71,26 +89,51 @@ const newLabel = (label) => {
 
 const init = () => {
     document.title = gameData.metadata.title
+    menuBarTitle.innerText = gameData.metadata.title
     fullInventory = gameData.mainData.inventory
+
+    menuButton.onclick = () => { showMenu() }
+
     newLabel("0")
 }
 
 
 
+
 //global variables
+const menuBarTitle = document.querySelector("#titleLabel")
 const gameText = document.querySelector("#textLabel")
-const inventoryButton = document.querySelector("#inventoryLabel")
-const buttons = document.querySelectorAll("button")
+const menuButton = document.querySelector("#menuButton") //change when make save and load
+const buttons = Array.from(document.querySelectorAll(".optionButton"))
 const picdiv = document.querySelector("#imagediv")
 const music = document.querySelector("#music")
-let currentData
+const sfx = document.querySelector("#audio")
 let fullInventory
 let currentInventory = []
 let checkpointInventory = []
 let currentVars = []
 let checkpointVars = []
+let currentButtons = []
+let currentLabels = []
 let currentMusic = ""
 let checkpointLabel = ""
+let currentLabel = ""
+
+let currentState = {
+    "label": "", //currentLabel,
+    "inventory": [], //[...currentInventory],
+    "vars": [], //[...currentVars],
+    "music": "" //currentMusic
+}
+
+let checkpointState = {
+    "label": "", //checkpointLabel,
+    "inventory": [], //[...checkpointInventory],
+    "vars": [], //[...checkpointLabel],
+    "music": "" //checkpointMusic
+}
+
+
 
 init()
 

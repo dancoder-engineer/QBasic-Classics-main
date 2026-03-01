@@ -27,18 +27,15 @@ const commandHandler = {
         if(pl !== -1) { currentInventory.splice(pl, 1) }
     },
 
-    "Checkpoint": (commands, currentLabel) => { 
+    "Checkpoint": () => { 
         checkpointLabel = currentLabel
-        console.log(currentLabel)
         checkpointInventory = [...currentInventory] 
         checkpointVars = [...currentVars] 
-        showInventory()
     },
 
-    "Game Over": (commands, currentLabel) => { 
-        hideInventory()
+    "Game Over": () => { 
         currentButtons = ["Return to Checkpoint"]
-        currentLabel = checkpointLabel
+        currentLabels = [checkpointLabel]
         currentInventory = [...checkpointInventory] 
         currentVars = [...checkpointVars] 
     },
@@ -47,7 +44,7 @@ const commandHandler = {
         currentVars[commands[1]] = commands[2]
     },
 
-    "Play Audio": (commands) => { 
+    "Play Music": (commands) => { 
         if (currentMusic != commands[1]) {
             currentMusic = commands[1]
             music.src = "./sound/" + commands[1]
@@ -55,8 +52,13 @@ const commandHandler = {
         }
     },
 
-    "Stop Audio": () => { 
+    "Stop Music": () => { 
         music.pause()
+    },
+
+    "Play SFX": (commands) => { 
+            sfx.src = "./sound/" + commands[1]
+            sfx.play()
     },
 
     "Add Label If": (commands) => {  
