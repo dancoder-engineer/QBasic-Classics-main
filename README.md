@@ -14,7 +14,7 @@ Immediately below this is a metadata object
     },
 ```
 
-Tht title is the title of your game, while the inventory tells the game whether or not you want to show the player their inventory. Technically it'll be there under the hood regardless, but if your game doesn't use an inventory, why bother taking up space with it?
+The title is the title of your game, while the inventory tells the game whether or not you want to show the player their inventory. Technically it'll be there under the hood regardless, but if your game doesn't use an inventory, why bother taking up space with it?
 
 
 ###Main Data
@@ -39,6 +39,8 @@ The inventory is an array of the names of strings representing the inventory ite
 Because this system is emulating QBasic text adventures where the entire gameplay is choosing an option and going to a different choice based on what the player chose,
 this engine runs on labels, just like you would GOTO in QBasic. These live in the mainData, right under the inventory, an example is as follows.
 
+The game always starts on the "0" label.
+
 ```
 "20": {
             "image": "500.png",
@@ -50,7 +52,7 @@ this engine runs on labels, just like you would GOTO in QBasic. These live in th
 ```
 Each label is its own object, named as what you would call it. The label is a string, and can obviously be numbers or letters, the game in this example used all numbers but it didn't have to.
 
-"image" is the image you want to load for this label. If there's nothing there, it'll load the name of the label + .pmg, for example for this label it would load 20.png. All images go in the ./images/ folder
+"image" is the image you want to load for this label. If there's nothing there, it'll load the name of the label + .png, for example for this label it would load 20.png. All images go in the ./images/ folder.
 
 The "text" is what you want the text in the text box to say. What would you PRINT in QBasic?
 
@@ -77,18 +79,33 @@ Available commands are:
 
 `["Checkpoint"]` saves the player's inventory and current variables for when they die. It also saves the current label so the player can be sent back when they get a game over.
 
+`["Game Over"]` signifies a game over. This loads the player's state and puts a button on the right taking them back to the last checkpoint they were at.
 
-//"commands": ["Game Over"]
-//"commands": ["Change Variable", 0, 5]
-//"commands": ["Play Audio", "Title"]
-//"commands": ["Stop Audio"]
-// for next can use < = >
+`["Change Variable", 0, 5]` changes an internal variable, which are numbered, to whatever you want. In this case, it changes variable number 0 to 5
 
-//"commands": ["Add Label If", "V2 > 0", "Cheat", "500"]
-//"commands": ["Add Label If", "I2 Owned", "Cheat", "500"]
-//"commands": ["Add Label If", "I2 Unowned", "Cheat", "500"]
+`["Play Music", "Title.wav"]` plays a music track, Music tracks loop. All audio files go in the ./audio/ folder.
+
+`["Play SFX", "Voice.wav"]` plays a sound effect. Sound effects do not loop. All audio files go in the ./audio/ folder.
+
+`["Stop Music"]` stops the music. Since no audio files can be played at the title screen because audio files can't be played until a user interacts with a program, it's a good idea to put one of these in the "0" label.
 
 
+##Conditionals
+Sometimes you only want to give the player an option if a certain condition is met. In that case, you can use the `Add Label If` command, like so:
+```
+["Add Label If", "V2 > 0", "Cheat", "500"]
+["Add Label If", "V2 > 0", "Cheat", "500"]
+["Add Label If", "I2 Owned", "Cheat", "500"]
+["Add Label If", "I2 Unowned", "Cheat", "500"]
+```
+
+After the initial command, the first array entry is the condition that has to be met in order for it to run, the second is what it should say, and the last is the label for it to send the player to. Conditions work like this:
+
+For a variable you start with V. V2 would be variable number 2.
+For the operator you can use <, =, or >
+And then the number you want to compare it to.
+
+I is inventory item, followed by the number. It can be Owned or Unowned.
 
 ##Junction
 
