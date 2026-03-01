@@ -103,6 +103,17 @@ Junction labels only have one item in them, "Junction," which works the same as 
 If it's fulfilled, the player goes to the first label, if not it goes to the second one.
 If there's a junction in a label, everything else gets ignored.
 
+Junction can be an array, as above or an array of arrays, like so:
+
+```
+//"Junction":[ 
+//     ["V2 > 30", "50"],
+//     ["V2 > 20", "150"],
+//     ["V2 > 10", "200", "400"]
+// ]
+
+```
+
 
 Do:
 O   Junction
