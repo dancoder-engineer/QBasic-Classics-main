@@ -8,10 +8,10 @@ body {
 
 #main{
     display: grid;
-    grid-template-rows: 15px 1.75fr 15px 10fr 15px 10fr 15px;
+    grid-template-rows: 15px 1.5fr 15px 10fr 15px 10fr 15px;
     grid-template-columns: 15px 3fr 15px 1fr 15px;
     width: 60vw;
-    height: 90vh;
+    height: 95vh;
     background-color: grey;
     margin: auto;
 }
@@ -32,7 +32,7 @@ body {
     color: white;
     padding: 5px;
     font-family: 'Perfect DOS VGA 437', monospace;
-    font-size:3vh;
+    font-size:2.5vh;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;

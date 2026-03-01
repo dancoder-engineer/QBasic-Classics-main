@@ -79,7 +79,8 @@ const newLabel = (label) => {
     prepareTextAndOptions(currentData)
 
     if (currentData.labels) { currentLabels = [...currentData.labels] }
-    picdiv.style.backgroundImage = "url('./images/"+ label + ".png')";
+    if (currentData.image) { picdiv.style.backgroundImage = "url('./images/"+ currentData.image}
+    else { picdiv.style.backgroundImage = "url('./images/"+ label + ".png')" }
     if (currentData.commands) {  
         if (typeof(currentData.commands[0]) === "object") {  
             for (let command of currentData.commands) {

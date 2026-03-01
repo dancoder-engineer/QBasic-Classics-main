@@ -41,6 +41,7 @@ this engine runs on labels, just like you would GOTO in QBasic. These live in th
 
 ```
 "20": {
+            "image": "500.png",
             "text": "You are at your friend's house. What do you do?",
             "options": ["Go to the store.", "Go home"],
             "labels": ["50", "100"],
@@ -48,6 +49,8 @@ this engine runs on labels, just like you would GOTO in QBasic. These live in th
     }
 ```
 Each label is its own object, named as what you would call it. The label is a string, and can obviously be numbers or letters, the game in this example used all numbers but it didn't have to.
+
+"image" is the image you want to load for this label. If there's nothing there, it'll load the name of the label + .pmg, for example for this label it would load 20.png. All images go in the ./images/ folder
 
 The "text" is what you want the text in the text box to say. What would you PRINT in QBasic?
 
@@ -89,6 +92,6 @@ Available commands are:
 
 Do:
     Junction
-    2 sounds?
-    menu inventory/save/load
-    can put "image" on a label for a specific image
+O   2 sounds?
+O   menu inventory/save/load
+O   can put "image" on a label for a specific image
