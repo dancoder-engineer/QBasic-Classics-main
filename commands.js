@@ -4,8 +4,8 @@ const ifCondition = (cond) => {
     if (cond[0].toUpperCase() === "V") {
         compareNo = parseInt(condArray[2])
         if (condArray[1] === ">") { return currentVars[thingNo] > compareNo }
-        if (condArray[1][0]=== "=") { return currentVars[thingNo] === compareNo }
-        if (condArray[1] === "<") { return currentVars[thingNo] < compareNo }
+        else if (condArray[1][0]=== "=") { return currentVars[thingNo] === compareNo }
+        else if (condArray[1] === "<") { return currentVars[thingNo] < compareNo }
     }
 
     if (cond[0].toUpperCase() === "I") { 
@@ -15,55 +15,65 @@ const ifCondition = (cond) => {
 }
 
 
+const commandHandler = {
+    "Give Item": (commands) => { 
+        if (commands[0] === "Give Item") { 
+            currentInventory.push(commands[1]) 
+        }
+    },
 
-const runCommands = (commands, currentLabel) => { 
-    if (commands[0] === "Give Item") { 
-        currentInventory.push(commands[1]) 
-    }
-    
-    if (commands[0] === "Remove Item") { 
+    "Remove Item": (commands) => { 
         let pl = currentInventory.indexOf(commands[1])
         if(pl !== -1) { currentInventory.splice(pl, 1) }
-    }
-    
-    if (commands[0] === "Checkpoint") { 
+    },
+
+    "Checkpoint": (commands, currentLabel) => { 
         checkpointLabel = currentLabel
         console.log(currentLabel)
         checkpointInventory = [...currentInventory] 
         checkpointVars = [...currentVars] 
         showInventory()
-    }
-    
-    if (commands[0] === "Game Over") { 
+    },
+
+    "Game Over": (commands, currentLabel) => { 
         hideInventory()
         currentButtons = ["Return to Checkpoint"]
-        currentLabels = [checkpointLabel]
+        currentLabel = checkpointLabel
         currentInventory = [...checkpointInventory] 
         currentVars = [...checkpointVars] 
-    }
+    },
 
-    if (commands[0] === "Change Variable") { 
+    "Change Variable": (commands) => { 
         currentVars[commands[1]] = commands[2]
-    }
+    },
 
-    if (commands[0] === "Play Audio") { 
+    "Play Audio": (commands) => { 
         if (currentMusic != commands[1]) {
             currentMusic = commands[1]
             music.src = "./sound/" + commands[1]
             music.play()
         }
-    }
+    },
 
-    if (commands[0] === "Stop Audio") { 
+    "Stop Audio": () => { 
         music.pause()
-    }
+    },
 
-   if (commands[0] === "Add Label If") {  
+    "Add Label If": (commands) => {  
         if(ifCondition(commands[1])) { 
             currentButtons.push(commands[2])
             currentLabels.push(commands[3])
          }
     } 
 
+
+
+}
+
+
+const runCommands = (commands, currentLabel) => { 
+
+    const handler = commandHandler[commands[0]]
+    if (handler) { handler(commands, currentLabel) }
 
 }

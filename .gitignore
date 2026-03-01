@@ -8,6 +8,7 @@
 gamedata.js
 /images/*.png
 /sound/*.wav
+*.txt
 
 # Ignore bundler config.
 /.bundle
