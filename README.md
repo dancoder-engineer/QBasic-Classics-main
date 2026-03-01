@@ -85,3 +85,9 @@ Available commands are:
 //"commands": ["Add Label If", "I2 Owned", "Cheat", "500"]
 //"commands": ["Add Label If", "I2 Unowned", "Cheat", "500"]
 
+
+
+Do:
+Junction
+2 sounds?
+menu inventory/save/load
