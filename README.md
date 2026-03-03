@@ -134,3 +134,8 @@ Junction can be an array, as above or an array of arrays, like so:
 // ]
 ```
 
+
+
+   Make the save function save checkpoint and current
+   Need a 6th button
+
