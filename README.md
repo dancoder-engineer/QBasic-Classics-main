@@ -81,7 +81,11 @@ Available commands are:
 
 `["Game Over"]` signifies a game over. This loads the player's state and puts a button on the right taking them back to the last checkpoint they were at.
 
-`["Change Variable", 0, 5]` changes an internal variable, which are numbered, to whatever you want. In this case, it changes variable number 0 to 5
+`["Set Variable", 0, 5]` changes an internal variable, which are numbered, to whatever you want. In this case, it changes variable number 0 to 5
+
+`["Add to Variable", 0, 5]`
+
+`["Subtract from Variable", 0, 5]`
 
 `["Play Music", "Title.wav"]` plays a music track, Music tracks loop. All audio files go in the ./audio/ folder.
 

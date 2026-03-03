@@ -21,9 +21,9 @@ body {
     grid-column: 2;
     background-color: blue;
     color: white;
-    padding: 25px;
+    padding: 10px;
     font-family: 'Perfect DOS VGA 437', monospace;
-    font-size:4vh;
+    font-size:3vh;
     overflow-y: auto;
     overflow-x:hidden
 }
