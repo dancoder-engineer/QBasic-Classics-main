@@ -138,4 +138,6 @@ Junction can be an array, as above or an array of arrays, like so:
 
    Make the save function save checkpoint and current
    Need a 6th button
-
+   No default image/no change if there's no image in a label
+   All the variable maths are one function
+   Make the text in a label an array of strings
