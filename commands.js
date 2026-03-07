@@ -66,7 +66,6 @@ const commandHandler = {
         if(vMath[1] === "+") { currentState.vars[vMath[0]] += parseInt(vMath[2]) }
         if(vMath[1] === "-") { currentState.vars[vMath[0]] -= parseInt(vMath[2])  }
         if(vMath[1][0] === "=") { currentState.vars[vMath[0]] = parseInt(vMath[2]) }
-        console.log(currentState.vars)
     },
 
     "Play Music": (commands) => { 
