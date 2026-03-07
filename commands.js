@@ -16,7 +16,7 @@ const ifCondition = (cond) => {
 
 const junction = (currentData) => { 
 
-    juncs = []
+    let juncs = []
 
     if (!Array.isArray(currentData[0])){ 
         juncs[0] = currentData
@@ -26,7 +26,7 @@ const junction = (currentData) => {
     }
 
 
-    for (let junc of juncs) { console.log(juncs)
+    for (let junc of juncs) { 
         if(ifCondition(junc[0])) { 
             newLabel(junc[1])
             return 0

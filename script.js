@@ -36,13 +36,18 @@ const showMenu = () => {
 
 
 const saveGame = () => {
-    localStorage.setItem("saveData", JSON.stringify(currentState))
+    let states = {
+        current: {...currentState},
+        checkpoint: {...checkpointState}
+    }
+    localStorage.setItem("saveData", JSON.stringify(states))
     newLabel(currentState.label)
 }
 
 const loadGame = () => {
     const save = JSON.parse(localStorage.getItem("saveData"))
-    currentState = structuredClone(save)
+    currentState = structuredClone(save.current)
+    checkpointState = structuredClone(save.checkpoint)
     music.src = "./sound/" + save.music
     music.play()
     newLabel(currentState.label)
