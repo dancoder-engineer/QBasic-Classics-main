@@ -140,8 +140,9 @@ Junction can be an array, as above or an array of arrays, like so:
 
 
 
-O  Make the save function save checkpoint and current
-O  Need a 6th button
-O  No default image/no change if there's no image in a label
-   All the variable maths are one function
-O  Make the text in a label an array of strings
+```
+        ["Variable Math", "v1 + 1"],
+        ["Variable Math", "v8 - 5"],
+        ["Variable Math", "v9 = 7"]
+```
+

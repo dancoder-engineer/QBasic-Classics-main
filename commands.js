@@ -59,22 +59,14 @@ const commandHandler = {
         currentState = {...checkpointState}
     },
 
-    "Set Variable": (commands) => { 
-        currentState.vars[commands[1]] = commands[2]
-    },
-
-    "Add to Variable": (commands) => { 
-        if(!currentState.vars[commands[1]]) {
-            currentState.vars[commands[1]] = 0
-        }
-        currentState.vars[commands[1]] += commands[2]
-    },
-
-    "Subtract from Variable": (commands) => { 
-        if(!currentState.vars[commands[1]]) {
-            currentState.vars[commands[1]] = 0
-        }
-        currentState.vars[commands[1]] -= commands[2]
+    "Variable Math": (commands) => {
+        let vMath = commands[1].split(" ")
+        vMath[0] = vMath[0].slice(1)
+        if (!currentState.vars[vMath[0]]) { currentState.vars[vMath[0]] = 0 }
+        if(vMath[1] === "+") { currentState.vars[vMath[0]] += parseInt(vMath[2]) }
+        if(vMath[1] === "-") { currentState.vars[vMath[0]] -= parseInt(vMath[2])  }
+        if(vMath[1][0] === "=") { currentState.vars[vMath[0]] = parseInt(vMath[2]) }
+        console.log(currentState.vars)
     },
 
     "Play Music": (commands) => { 
