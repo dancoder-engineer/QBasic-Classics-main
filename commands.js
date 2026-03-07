@@ -101,7 +101,7 @@ const runCommands = (commands) => {
 
     const handler = commandHandler[commands[0]]
     if (handler) { handler(commands) }
-    else {
+    else { 
         console.warn("Unknown command:", commands[0])
     }
 }
