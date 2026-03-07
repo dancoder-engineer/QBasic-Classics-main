@@ -25,7 +25,7 @@ const showMenu = () => {
             return 0
         }
             const mainMenu = {
-            "text": inventoryText(),
+            "text": [inventoryText()],
             "options": ["Save", "Load", "Back"],
             "labels": ["Save", "Load", currentState.label],
         }
@@ -120,9 +120,6 @@ const newLabel = (label) => {
         }
     }
     changeButtons(currentButtons, currentLabels)
-    
-
-
 
 
 }
@@ -134,7 +131,11 @@ const init = () => {
 
     menuButton.onclick = () => { showMenu() }
 
-    newLabel("0")
+    for(let i = 0; i < gameData.metadata.noOfVariables; i++){
+        currentState.vars[i] = 0
+    }
+
+    newLabel("titleScreen")
 }
 
 
