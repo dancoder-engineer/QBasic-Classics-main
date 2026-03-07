@@ -9,12 +9,16 @@ Immediately below this is a metadata object
 
 ```
     "metadata": {
-        "title": "Game Title",
+        "title": "Poop Adventure: The Shopping Center of Destiny",
+        "images": true,
+        "defaultImages": true,
         "inventory": true
     },
 ```
 
 The title is the title of your game, while the inventory tells the game whether or not you want to show the player their inventory. Technically it'll be there under the hood regardless, but if your game doesn't use an inventory, why bother taking up space with it?
+
+Images is whether or not your game uses images, and if defaultImages is true, the game will load a png named after the label you're on (such as 200.png) if there's no image defined.
 
 
 ###Main Data
@@ -52,7 +56,7 @@ The game always starts on the "0" label.
 ```
 Each label is its own object, named as what you would call it. The label is a string, and can obviously be numbers or letters, the game in this example used all numbers but it didn't have to.
 
-"image" is the image you want to load for this label. If there's nothing there, it'll load the name of the label + .png, for example for this label it would load 20.png. All images go in the ./images/ folder.
+"image" is the image you want to load for this label. If there's nothing there, it'll load the name of the label + .png, for example for this label it would load 20.png (if the metadata is set to do this.) All images go in the ./images/ folder.
 
 The "text" is what you want the text in the text box to say. What would you PRINT in QBasic?
 
@@ -138,6 +142,6 @@ Junction can be an array, as above or an array of arrays, like so:
 
 O  Make the save function save checkpoint and current
 O  Need a 6th button
-   No default image/no change if there's no image in a label
+O  No default image/no change if there's no image in a label
    All the variable maths are one function
-   Make the text in a label an array of strings
+O  Make the text in a label an array of strings

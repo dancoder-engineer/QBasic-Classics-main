@@ -67,7 +67,7 @@ const inventoryText = () => {
 }
 
 const prepareTextAndOptions = (data) => {
-    gameText.innerText = data.text
+    gameText.innerText = data.text.join("\n")
     if (data.options) { 
         currentButtons = [...data.options]
     }
@@ -102,7 +102,11 @@ const newLabel = (label) => {
 
      if(gameData.metadata.images) {
         if (currentData.image) { picdiv.style.backgroundImage = "url('./images/"+ currentData.image + "')"}
-        else { picdiv.style.backgroundImage = "url('./images/"+ label + ".png')" }
+        else { 
+            if(gameData.metadata.defaultImages) {
+                picdiv.style.backgroundImage = "url('./images/"+ label + ".png')" 
+            }
+        }
      }
 
     if (currentData.commands) {  
