@@ -48,7 +48,8 @@ const loadGame = () => {
     const save = JSON.parse(localStorage.getItem("saveData"))
     currentState = structuredClone(save.current)
     checkpointState = structuredClone(save.checkpoint)
-    music.src = "./sound/" + save.music
+    picdiv.style.backgroundImage = "url('./images/"+ currentState.image + "')"
+    music.src = "./sound/" + currentState.music
     music.play()
     newLabel(currentState.label)
 }
@@ -101,10 +102,14 @@ const newLabel = (label) => {
     prepareTextAndOptions(currentData)
 
      if(gameData.metadata.images) {
-        if (currentData.image) { picdiv.style.backgroundImage = "url('./images/"+ currentData.image + "')"}
+        if (currentData.image) { 
+            picdiv.style.backgroundImage = "url('./images/"+ currentData.image + "')"
+            currentState.image = currentData.image
+        }
         else { 
             if(gameData.metadata.defaultImages) {
                 picdiv.style.backgroundImage = "url('./images/"+ label + ".png')" 
+                currentState.image = label + ".png"
             }
         }
      }
@@ -157,14 +162,16 @@ let currentState = {
     "label": "",
     "inventory": [],
     "vars": [],
-    "music": ""
+    "music": "",
+    "image": ""
 }
 
 let checkpointState = {
     "label": "",
     "inventory": [],
     "vars": [],
-    "music": ""
+    "music": "",
+    "image": ""
 }
 
 
